@@ -53,12 +53,12 @@ export class GifService {
         map((items) => GifMapper.mapGiphyItemsToGifArray(items)),
 
         // TODO: Historial
-        tap(items => {
-          this.searchHistory.update(history => ({
+        tap((items) => {
+          this.searchHistory.update((history) => ({
             ...history,
             [query.toLowerCase()]: items,
-          }))
-        })
+          }));
+        }),
       );
     // .subscribe((resp) => {
     //   const gifs = GifMapper.mapGiphyItemsTGifArray(resp.data);
