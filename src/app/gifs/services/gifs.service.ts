@@ -11,7 +11,7 @@ const GIF_KEY = 'gifs';
 const loadFromLocalStorage = () => {
   const gifsFromLocalStorage = localStorage.getItem(GIF_KEY) ?? '{}';
   const gifs = JSON.parse(gifsFromLocalStorage);
-  return gifs
+  return gifs;
 };
 
 @Injectable({ providedIn: 'root' })
@@ -19,9 +19,18 @@ export class GifService {
   private http = inject(HttpClient);
 
   trendingGifs = signal<Gif[]>([]);
-  trendingGfsLoanding = signal(true);
+  trendingGifsLoading = signal(true);
 
-  searchHistory = signal<Record<string, Gif[]>>( loadFromLocalStorage() );
+  trendingGifGroup = computed<Gif[][]>(() => {
+    const groups = [];
+    for (let i = 0; i < this.trendingGifs().length; i += 3) {
+      groups.push(this.trendingGifs().slice(i, i + 3));
+    }
+
+    return groups;
+  });
+
+  searchHistory = signal<Record<string, Gif[]>>(loadFromLocalStorage());
   searchHistoryKeys = computed(() => Object.keys(this.searchHistory()));
 
   constructor() {
@@ -45,7 +54,7 @@ export class GifService {
       .subscribe((resp) => {
         const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
         this.trendingGifs.set(gifs);
-        this.trendingGfsLoanding.set(false);
+        this.trendingGifsLoading.set(false);
         console.log({ gifs });
       });
   }
