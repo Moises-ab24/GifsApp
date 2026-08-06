@@ -10,7 +10,7 @@ export class GifMapper {
     };
   }
 
-  static mapGiphyItemsTGifArray(items: GiphyItem[]): Gif[] {
+  static mapGiphyItemsToGifArray(items: GiphyItem[]): Gif[] {
     return items.map(this.mapGiphyItemToGif);
   }
 }
