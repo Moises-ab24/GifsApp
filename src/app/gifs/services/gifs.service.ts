@@ -35,7 +35,6 @@ export class GifService {
 
   constructor() {
     this.loadTrendingGifs();
-    console.log('Servicio creado');
   }
 
   saveGifsToLocalStorage = effect(() => {
@@ -55,7 +54,6 @@ export class GifService {
         const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
         this.trendingGifs.set(gifs);
         this.trendingGifsLoading.set(false);
-        console.log({ gifs });
       });
   }
 
