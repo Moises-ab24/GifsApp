@@ -1,8 +1,18 @@
-<div id="menu" class="w-55 bg-black min-h-screen z-10 text-slate-300 fixed left-0 h-screen overflow-y-scroll">
+<div id="menu"
+  class="w-55 pt-18 md:pt-0 bg-black min-h-screen text-slate-300 fixed left-0 top-0 h-screen overflow-y-scroll z-30 transform transition-transform duration-300 ease-in-out md:translate-x-0"
+  [class.translate-x-0]="uiState.isMenuOpen()"
+  [class.-translate-x-full]="!uiState.isMenuOpen()"
+>
+  <!-- gifs-side-menu-header -->
+  <gifs-side-menu-header/>
 
-          <!-- gifs-side-menu-header -->
-          <gifs-side-menu-header/>
+  <!-- gifs-side-menu-options -->
+  <gifs-side-menu-options/>
+</div>
 
-         <!-- gifs-side-menu-options -->
-          <gifs-side-menu-options/>
-        </div>
+@if (uiState.isMenuOpen()) {
+  <div
+    class="fixed inset-0 bg-black/50 z-20 md:hidden"
+    (click)="uiState.closeMenu()"
+  ></div>
+}

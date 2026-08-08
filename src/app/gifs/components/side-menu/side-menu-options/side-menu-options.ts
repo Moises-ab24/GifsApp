@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { GifService } from '../../../services/gifs.service';
+import { UiStateService } from '../../../../shared/services/ui-state.service';
 
 interface MenuOption {
   icon: string;
@@ -16,7 +17,8 @@ interface MenuOption {
 })
 export class SideMenuOptions {
 
-GifService = inject(GifService)
+  GifService = inject(GifService)
+  uiState = inject(UiStateService)
 
   menuOptions: MenuOption[] = [
     {

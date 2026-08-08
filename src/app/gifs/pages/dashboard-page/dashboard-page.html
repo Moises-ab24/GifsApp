@@ -1,11 +1,22 @@
-<div class="bg-slate-100 overflow-y-scroll w-screen h-screen antialiased text-slate-300 selection:bg-gray-300 selection:text-white">
-    <div class="flex flex-col relative w-screen">
+<div class="bg-slate-100 w-screen h-screen antialiased text-slate-300 selection:bg-gray-300 selection:text-white">
+  <div class="flex flex-col relative w-screen">
 
-      <gifs-side-menu/>
+    <!-- Topbar mobile -->
+    <header class="md:hidden fixed top-0 left-0 w-full h-14 bg-black text-white flex items-center px-4 z-40 border-b border-slate-300">
+      <button (click)="uiState.toggleMenu()" class="text-xl w-8 text-slate-300 hover:text-white transition-colors">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="ml-3 flex items-baseline gap-0.5">
+        <span class="text-lg font-bold text-white">Gifs</span>
+        <span class="text-lg font-bold text-gray-300">App</span>
+      </div>
+    </header>
 
-        <div class="ml-55 px-4 flex flex-col flex-1 h-full text-slate-800">
+    <gifs-side-menu/>
 
-          <router-outlet/>
-        </div>
+    <div class="md:ml-55 px-4 pt-18 md:pt-4 flex flex-col flex-1 text-slate-800">
+      <router-outlet/>
     </div>
+
+  </div>
 </div>
